@@ -1,35 +1,54 @@
-import { useState } from "react";
-import NewProject from "./components/NewProject";
-import NoProjectSelected from "./components/NoProjectSelected";
-import ProjectSideBar from "./components/ProjectSideBar";
+import { useState } from 'react';
+
+import NewProject from './components/NewProject.jsx';
+import NoProjectSelected from './components/NoProjectSelected.jsx';
+import ProjectsSidebar from './components/ProjectSidebar.jsx';
 
 function App() {
-
-  const [porjectsState, setProjectsState] = useState({
+  const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
-    porjects: []
+    projects: [],
   });
 
   function handleStartAddProject() {
-    setProjectsState(prevState => {
-      return{
+    setProjectsState((prevState) => {
+      return {
         ...prevState,
         selectedProjectId: null,
       };
     });
   }
 
+  function handleAddProject(projectData) {
+    setProjectsState((prevState) => {
+      const projectId = Math.random();
+      const newProject = {
+        ...projectData,
+        id: projectId,
+      };
+
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
   let content;
 
-  if(porjectsState.selectedProjectId === null) {
-    content = <NewProject />
-  }else if (porjectsState.selectedProjectId === undefined){
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />
+  if (projectsState.selectedProjectId === null) {
+    content = <NewProject onAdd={handleAddProject} />;
+  } else if (projectsState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectSideBar onStartAddProject={handleStartAddProject} />
+      <ProjectsSidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectsState.projects}
+      />
       {content}
     </main>
   );
