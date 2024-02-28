@@ -39,7 +39,7 @@ export default function NewProject({ onAdd, onCancel }) {
           Oops ... looks like you forgot to enter a value.
         </p>
         <p className="text-stone-600 mb-4">
-          Please make sure you provide a valid value for every input field.
+          Please make sure you provide a valid value for every input place.
         </p>
       </Modal>
       <div className="w-[35rem] mt-16">
