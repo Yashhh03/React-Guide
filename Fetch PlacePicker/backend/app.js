@@ -7,7 +7,6 @@ const app = express();
 
 app.use(express.static("images"));
 app.use(bodyParser.json());
-z;
 
 // CORS
 
