@@ -8,7 +8,6 @@ export default function Signup() {
     data.acquisition = acquisitionChannel;
     console.log(data);
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
