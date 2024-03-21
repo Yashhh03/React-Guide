@@ -44,5 +44,6 @@
 .header button:hover,
 .header button:active {
   background-color: #ffa600;
+
   border-color: #ffa600;
 }
